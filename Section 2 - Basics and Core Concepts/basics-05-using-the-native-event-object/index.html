@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js" defer></script> 
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Events</h1>
+    </header>
+    <section id="events">
+      <h2>Events in Action</h2>
+      <button v-on:click="add(10)">Add 10</button>
+      <button v-on:click="reduce(5)">Subtract 5</button>
+      <p>Result: {{ counter }}</p>
+      <input type="text" v-model="name">
+      <!-- v-model creates a two-way binding between the input field and the data variable 'name'. -->
+      <input type="text" v-model="lastName">
+      <button v-on:click="resetInput">Reset Input</button>
+      <!-- note: there is a more used syntax/shorthand for "v-on:". this is "@", like shown below -->
+      <!-- <button @click="resetInput">Reset Input</button> -->
+      <!-- note: there is also a more used syntax/shorthand for "v-bind:". this is simply ":", like shown below -->
+      <!-- <input type="text" :value="My Value"> -->
+      <p>Your Name: {{ outputFullName() }}</p>
+      <!-- Important: Vue will re-render/update the html where data may have changed -->
+      <!-- Like in the <p> above with {{ counter }} it will only re-render that tag when counter changes -->
+      <!-- but since we call a method here, vue doesn't know what that method does, so it has to re-render -->
+      <!-- this anytime any property/data changes. This can lead to unneccasary work, which we want to avoid. -->
+      <!-- For this reason methods are not the best way to display calculated values like this. Instead use computed properties.-->
+      <!-- See below we reference fullName like a data property, not like a method, eg fullName(), this would be wrong -->
+      <p>Your Name: {{ fullName }}</p>
+    </section>
+  </body>
+</html>

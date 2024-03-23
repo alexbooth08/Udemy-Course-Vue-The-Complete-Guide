@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js" defer></script> 
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Dynamic Styling</h1>
+    </header>
+    <section id="styling">
+      <!-- this object syntax below for :style and :class is special for vue. This also allows us to use js expressions here. Remember, :class is just shorthand for v-bind:class -->
+      <!-- Note: use camelCase for css style attributes here since we can't use dashes like that in html. (border-color becomes borderColor) -->
+      <!-- Note: inline styles like this are considered poor design, better to use classes defined in css file -->
+      <div class="demo" :style="{ borderColor: boxASelected ? 'red' : '#ccc', backgroundColor: boxASelected ? 'salmon' : 'initial' }" @click="toggleBoxSelected('A')"></div>
+      <!-- boxB below is better than boxA than above, but still not good. Better to use vue object syntax for :class like boxC below -->
+      <div :class="boxBSelected ? 'demo active' : 'demo'" @click="toggleBoxSelected('B')"></div>
+      <!-- Here, using vue :class/v-bind:class you can use vue's object syntax. -->
+      <!-- with this object each key is a class name, and the value is a boolean where true adds that class to that html component, and false removes it -->
+      <!-- we can also still use class even if using :class, so here boxC will always have the class "demo" -->
+      <div class="demo" :class="{ active: boxCSelected}" @click="toggleBoxSelected('C')"></div>
+      <!-- can also set :class to computed property to do the same thing and simplify HTML code -->
+      <div class="demo" :class="boxDClasses" @click="toggleBoxSelected('D')"></div>
+      <!-- Note: Vue also supports another syntax with :class using an array shown below -->
+      <div class="demo" :class="['demo', { active: boxESelected }]" @click="toggleBoxSelected('E')"></div>
+    </section>
+  </body>
+</html>

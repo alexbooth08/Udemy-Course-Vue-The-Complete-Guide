@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A First App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <label for="goal">Goal</label>
+        <!-- v-model creates a two-way connection the value of this input field to a data model field defined in data of the vue app (enteredValue) -->
+        <!-- so that when the value of the input field is changed the value of the variable enteredValue is changed, and -->
+        <!-- when the value of the variable enteredValue is changed the value of the input field is changed -->
+        <input type="text" id="goal" v-model="enteredValue" />
+        <!-- v-on calls a method defined in vue app (addGoal) when an event happens (click) -->
+        <button v-on:click="addGoal">Add Goal</button>
+      </div>
+      <ul>
+        <!-- v-for loops through all values in goals, where goal is the item in the loop -->
+        <li v-for="goal in goals">{{ goal }}</li>
+      </ul>
+    </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js" defer></script> 
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goal">
+      <h2>My Course Goal</h2>
+      <!-- {{ }} is special syntax for Vue that allows us to access variables from data defined in Vue.createApp(), and execute simple js expressions -->
+      <!-- this is known as interpolation syntax -->
+      <!-- data and interpolation are two key features of vue and for vue apps -->
+      <p v-html="outputGoal()"></p>
+      <!-- <p>{{ outputGoal() }}</p> Inside {{ }} <i> will be interpreted as text, not an html tag, by vue, so this will not due what we want. Note: this is good b/c of security concerns. Instead use v-html to render it as html --> 
+      <!-- <p>Learn more <a href="{{ vueLink }}">about Vue</a></p> {{ }} does not work inside tag attributes like this. Need to use v-bind -->
+      <p>Learn more <a v-bind:href="vueLink">about Vue</a></p>
+      <!-- v-bind tells vue to set the value of an attrubte, href, to value of data object, vueLink -->
+    </section>
+  </body>
+</html>

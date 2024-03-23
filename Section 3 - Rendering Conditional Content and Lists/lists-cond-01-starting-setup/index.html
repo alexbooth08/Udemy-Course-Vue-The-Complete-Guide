@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js" defer></script> 
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <input type="text" v-model="enteredGoalValue"/>
+      <button @click="addGoal">Add Goal</button>
+      <!-- v-if will only render this html element if its conditional is true -->
+      <!-- Note: it is important to keep in mind the element is not just hidden, it is no longer rendered (it is removed from the DOM) -->
+      <!-- However v-show works like v-if, but simply hides/shows the element instead of actuall removing it -->
+      <!-- Removing/readding an element does cost performance, but it is also bad to have a bunch of elements in the DOM that
+           are not being used. So, for best performance it is better to use v-if unless you will be hiding and showing
+           an element often, like having a better that will hide/show another element that can be pressed a lot  -->
+      <!-- v-if conditional works like a js conditional -->
+      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      <!-- v-else and v-else-if can only be used on an element that comes directly after an element with v-if -->
+      <ul v-else>
+        <!-- v-for works similiar to a js for loop, but not exactly -->
+        <!-- it loops through an array and will create this html element for every item in the array,
+             giving access to the item for the html inside this element, in this case that is goal -->
+        <!-- if you don't need access to the index you can also use the below syntax -->
+        <!-- <li v-for="goal in goals">{{ goal }}</li> -->
+        <li v-for="(goal, index) in goals" @click="removeGoal(index)">{{ index + 1}} - {{ goal }}</li>
+      </ul>
+
+      <!-- Note: v-for can also loop through objects like below: -->
+      <!-- <ul>
+        <li v-for="(value, key, index) in {name: 'Alex', age: 26}">{{ key }} : {{ value }}</li>
+      </ul> -->
+      <!-- Note: v-for can also loop through a range of numbers like below: -->
+      <!-- <ul>
+        <li v-for="num in 10">{{ num }}</li>
+      </ul> -->
+
+      <!-- Important: below demonstrates a bug where you have an input element inside v-form, and when you remove elements
+           the input field stays with its current element so the input value is now in the wrong element.
+           The fix for this is to add the "key" attribute, which is a vue attribute (not native HTML).
+           Note: It is good practice/design to alway include the key attribute even if you think you don't need it -->
+      <!-- <ul> -->
+        <!-- we use goal here as the key, but in real world better to use a unique key (probably from a database) -->
+        <!-- Note: we don't use index b/c it changes for each item as items are added and removed -->
+        <!-- <li v-for="(goal, index) in goals" :key="goal" @click="removeGoal(index)"> -->
+          <!-- <p>{{ index + 1}} - {{ goal }}</p> -->
+          <!-- Note: we add @click.stop here so that clicking in the field does not call removeGoal() from parant el click event -->
+          <!-- <input type="text" @click.stop> -->
+        <!-- </li> -->
+      <!-- </ul> -->
+    </section>
+  </body>
+</html>

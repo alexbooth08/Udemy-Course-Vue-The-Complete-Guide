@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js" defer></script> 
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Events</h1>
+    </header>
+    <section id="events">
+      <h2>Events in Action</h2>
+      <!-- we can write simple js expressions inside vue tag attributes values like v-on below -->
+      <!-- but this isn't good practice, we should define a function, like incrementCounter(), and reference it here -->
+      <button v-on:click="counter++">Add</button>
+      <button v-on:click="decrementCounter()">Remove</button> <!-- decrementCounter would work as well if decrementCounter had no parameter -->
+      <button v-on:click="incrementCounter(5)">Add 5</button>
+      <button v-on:click="decrementCounter(5)">Reduce 5</button>
+      <p v-once>Starting Counter: {{ counter }}</p> <!-- v-once tells vue to evaluate the values once, so counter here will always display its initial value even if its actual value is changed -->
+      <p>Result: {{ counter }}</p>
+      <input type="text" v-on:input="setName" v-on:keyup.enter="confirmInput"> <!-- listen to input event -->
+      <!-- Note: default parameter will be the native event object, however if you need to pass -->
+      <!-- your own parameter and still need the event object you can do this by also passing $event like below: -->
+      <!-- <input type="text" v-on:input="setName($event, someVal)"> -->
+      <p>Your Name: {{ name }}</p>
+      <p>Confirmed Name: {{ confirmedName }}</p>
+      <!-- HTML will submit form when we click the button. We want to avoid this so the page does not reload -->
+      <!-- We can do this using a vue modifier, using '.' after event after ':'. The modifer 'prevent' prevents the default behavior -->
+      <!-- Check vue documentation to see all event modifiers, like click.right and keyup.enter -->
+      <form v-on:submit.prevent="submitForm">
+        <input type="text">
+        <button> Sign Up</button>
+      </form>
+    </section>
+  </body>
+</html>

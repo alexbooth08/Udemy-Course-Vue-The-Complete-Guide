@@ -35,7 +35,7 @@ So the previous example using the Options API become the following using the **C
 ```  
 ### ```[data(), mehtods, computed, watch] -> setup()```
 
-Note: There is actually a newer and more concise syntax for setup where we **do not export default** or explicitly define setup() and return an object containing our variables. So, with the \<script> tag the above looks like:
+**Note**: There is actually a newer and more concise syntax for setup where we **do not export default** or explicitly define setup() and return an object containing our variables. So, with the \<script> tag the above looks like:
 ```html
 <script>
 {
